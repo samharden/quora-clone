@@ -1,7 +1,7 @@
-
+# import Unipath
 from unipath import Path
 PROJECT_DIR = Path(__file__).parent
-
+#
 from decouple import config
 
 import dj_database_url
@@ -23,7 +23,7 @@ DATABASES = {
         default = config('DATABASE_URL'))
 }
 
-ALLOWED_HOSTS = ['127.0.0.1', '.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.herokuapp.com']
 
 # Application definition
 
@@ -40,9 +40,10 @@ INSTALLED_APPS = (
     'quora.core',
     'quora.search',
     'social.apps.django_app.default',
+    'social_django'
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -95,7 +96,7 @@ LOGIN_REDIRECT_URL = '/questions/'
 ALLOWED_SIGNUP_DOMAINS = ['*']
 
 FILE_UPLOAD_TEMP_DIR = '/tmp/'
-FILE_UPLOAD_PERMISSIONS = 0644
+# FILE_UPLOAD_PERMISSIONS = 0644
 
 TEMPLATES = [
     {

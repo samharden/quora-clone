@@ -18,10 +18,10 @@ class Question(models.Model):
     slug = models.SlugField(max_length=255, null=True, blank=True)
     content = models.TextField(max_length=4000, null=True, blank=True)
     status = models.CharField(max_length=1, choices=STATUS, default=DRAFT)
-    create_user = models.ForeignKey(User)
+    create_user = models.ForeignKey(User, on_delete=models.CASCADE)
     create_date = models.DateTimeField(auto_now_add=True)
     update_date = models.DateTimeField(blank=True, null=True)
-    update_user = models.ForeignKey(User, null=True, blank=True, related_name="+")
+    update_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name="+")
 
     class Meta:
         db_table = '"questions"'
@@ -93,7 +93,7 @@ class Question(models.Model):
 
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
 
     class Meta:
         db_table = '"tags"'
@@ -120,10 +120,10 @@ class Tag(models.Model):
 
 
 class QuestionComment(models.Model):
-    question = models.ForeignKey(Question)
+    question = models.ForeignKey(Question, on_delete=models.CASCADE)
     comment = models.CharField(max_length=500)
     date = models.DateTimeField(auto_now_add=True)
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     upvotes = models.IntegerField(default=0)
 
     class Meta:
@@ -145,8 +145,8 @@ class QuestionComment(models.Model):
 
 
 class UserUpvote(models.Model):
-    user = models.ForeignKey(User)
-    comment = models.ForeignKey(QuestionComment)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment = models.ForeignKey(QuestionComment, on_delete=models.CASCADE)
 
     class Meta:
         db_table = '"upvotes"'

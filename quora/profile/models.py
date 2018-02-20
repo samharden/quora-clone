@@ -10,7 +10,7 @@ from quora.questions.models import Question, QuestionComment
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     url = models.CharField(max_length=500, null=True, blank=True)
     dollars_earned = models.FloatField(default=0.00)
 

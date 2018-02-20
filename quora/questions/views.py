@@ -104,7 +104,7 @@ def preview(request):
             return HttpResponse(html)
         else:
             return HttpResponseBadRequest()
-    except Exception, e:
+    except Exception as e:
         return HttpResponseBadRequest()
 
 
@@ -125,7 +125,7 @@ def comment(request):
             return HttpResponse(html)
         else:
             return HttpResponseBadRequest()
-    except Exception, e:
+    except Exception as e:
         return HttpResponseBadRequest()
 
 
